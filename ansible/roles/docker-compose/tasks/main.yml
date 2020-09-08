@@ -3,7 +3,7 @@
   pip:
     name:
       - docker-compose
-      - docker-py
+      - docker
       - zipp
 
 - name: setting sysctl #docker-composeに割り当てるメモリを増やす処理
