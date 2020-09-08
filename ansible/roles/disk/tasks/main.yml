@@ -1,6 +1,6 @@
 ---
-- name: check date directory
-  state:
+- name: check data directory
+  stat:
     path: /data
   register: chk_dir
 
