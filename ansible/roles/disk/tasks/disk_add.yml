@@ -1,0 +1,42 @@
+---
+- name: file system disk format
+  file_system:
+    fstype: ext4
+    dev: /dev/sdb
+
+- name: create disk space
+  file:
+    path: /data
+    state: directory
+
+- name: mount disk
+  mount:
+    path: /data
+    src: /dev/sdb
+    fstype: ext4
+    opts: defaults
+    state: mounted
+
+- name: get uuid
+  shell: 'blkid /dev/sdb | awk -F\" ''{ print $2 }'' '
+  register: uuid
+
+- name: unmount /mnt/tmp_device
+  mount:
+    name: /mnt/tmp_device
+    src: /dev/sdb
+    fstype: ext4
+    opts: defaults
+    state: absent
+
+- name: mount
+  mount:
+    name: /data
+    src: "UUID={{ uuid.stdout }}"
+    fstype: ext4
+    opts: defaults
+    state: mounted
+    
+- name: reboot
+  shell: shutdown -r now
+  when: reboot == true

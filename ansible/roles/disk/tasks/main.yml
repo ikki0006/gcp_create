@@ -1,0 +1,9 @@
+---
+- name: check /date
+  state:
+    path: /data
+  register: chk_dir
+
+- name: mount disk
+  import_tasks: tasks/disk_add.yml
+  when: chk_dir.stat.isdir != true
