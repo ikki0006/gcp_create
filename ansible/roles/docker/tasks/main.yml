@@ -34,7 +34,6 @@
       - containerd.io
     update_cache: yes
     state: present
-  notify: restart docker
 
 - name: Install docker-compose
   get_url:
@@ -48,3 +47,9 @@
     src: /usr/local/bin/docker-compose
     dest: /usr/bin/docker-compose
     state: link
+
+- name: restart docker
+  systemd:
+    state: started
+    name: docker.service
+    enabled: yes
