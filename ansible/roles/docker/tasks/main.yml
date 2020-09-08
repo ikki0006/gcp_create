@@ -16,6 +16,7 @@
       - docker-ce 
       - docker-ce-cli
       - containerd.io
+    update_cache: yes
   notify: restart docker
 
 - name: Install docker-compose
