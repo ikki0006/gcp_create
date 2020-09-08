@@ -2,8 +2,8 @@
 - name: pip install packageing
   pip:
     name:
-      - docker
       - docker-compose
+      - docker
 
 - name: setting sysctl #docker-composeに割り当てるメモリを増やす処理
   sysctl:
