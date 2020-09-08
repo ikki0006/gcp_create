@@ -3,6 +3,7 @@
   yum:
     name:
       - yum-utils
+      - pip
 
 - name: add docker-ce-nightly repo
   yum_repository:
