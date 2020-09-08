@@ -1,0 +1,5 @@
+StrictHostKeyChecking no
+
+host local
+  HostName 127.0.0.1
+  User root

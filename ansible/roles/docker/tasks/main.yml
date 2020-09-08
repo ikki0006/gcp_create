@@ -1,0 +1,32 @@
+---
+- name: Install pre docker package
+  yum:
+    name:
+      - yum-utils
+
+- name: Install docker repo
+  yum_repository:
+    name: docker repo
+    description: docker official repository
+    baseurl: https://download.docker.com/linux/centos/docker-ce.repo
+
+- name: Install docker-ce
+  yum:
+    name:
+      - docker-ce 
+      - docker-ce-cli
+      - containerd.io
+  notify: restart docker
+
+- name: Install docker-compose
+  get_url:
+    url: "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-{{ ansible_system }}-{{ ansible_architecture }}"
+    dest: /usr/local/bin/docker-compose
+    mode: +x
+  become: yes
+
+- name: link docker-compose
+  file:
+    src: /usr/local/bin/docker-compose
+    dest: /usr/bin/docker-compose
+    state: link

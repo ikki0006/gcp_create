@@ -1,0 +1,10 @@
+---
+env: local
+
+bat_home: /opt/00-shell
+
+db_env:
+  host: local00database01.postgres.database.azure.com
+  name: localdb
+  user: local01@local00database01
+  pass: test
