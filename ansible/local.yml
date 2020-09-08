@@ -3,6 +3,9 @@
   hosts: localhost # 実行させるグループ connectionがあっても必要
   connection: local # localhostに対してつなげるときの宣言。SSHではなく直接実行する
   become: yes # sudo実行
+  vars_files:
+    - ./group_vars/local.yml
+  git_url: 35.213.22.184
   roles: # 実行させる処理（記載された順番に実行される
     - disk
     - docker
