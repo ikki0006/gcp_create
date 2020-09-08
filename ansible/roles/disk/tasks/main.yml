@@ -1,5 +1,5 @@
 ---
-- name: check /date
+- name: check date directory
   state:
     path: /data
   register: chk_dir
