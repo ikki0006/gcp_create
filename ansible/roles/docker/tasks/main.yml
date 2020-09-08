@@ -4,11 +4,26 @@
     name:
       - yum-utils
 
-- name: Install docker repo
+- name: add docker-ce-nightly repo
   yum_repository:
-    name: docker_repo
-    description: docker official repository
-    baseurl: https://download.docker.com/linux/centos/docker-ce.repo
+    name: docker-ce-nightly
+    description: docker-ce-nightly repository
+    baseurl: https://download.docker.com/linux/centos/7/$basearch/nightly
+    gpgkey: https://download.docker.com/linux/centos/gpg
+
+- name: add docker-ce-nightly-debuginfo repo
+  yum_repository:
+    name: docker-ce-nightly-debuginfo
+    description: docker-ce-nightly-debuginfo repository
+    baseurl: https://download.docker.com/linux/centos/7/debug-$basearch/nightly
+    gpgkey: https://download.docker.com/linux/centos/gpg
+
+- name: add docker-ce-nightly-source repo
+  yum_repository:
+    name: docker-ce-nightly-source
+    description: docker-ce-nightly-source repository
+    baseurl: https://download.docker.com/linux/centos/7/source/nightly
+    gpgkey: https://download.docker.com/linux/centos/gpg
 
 - name: Install docker-ce
   yum:
