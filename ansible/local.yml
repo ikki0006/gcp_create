@@ -4,5 +4,6 @@
   connection: local # localhostに対してつなげるときの宣言。SSHではなく直接実行する
   become: yes # sudo実行
   roles: # 実行させる処理（記載された順番に実行される
+    - disk
     - docker
     
