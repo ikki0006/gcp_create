@@ -6,4 +6,4 @@
   roles: # 実行させる処理（記載された順番に実行される
     - disk
     - docker
-    
+    - docker-compose
