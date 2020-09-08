@@ -2,8 +2,8 @@
 - name: pip install packageing
   pip:
     name:
-      - docker==4.0.2
-      - docker-compose==1.24.1
+      - docker
+      - docker-compose
 
 - name: setting sysctl #docker-composeに割り当てるメモリを増やす処理
   sysctl:
@@ -18,10 +18,8 @@
     path: /opt/docker_compose
     state: directory
 
-- name: setting compose giserver
-  template: src=docker-compose@gi.j2 dest=/opt/docker_compose/docker-compose.yml backup=yes
-  when:
-    - "'giservers' in group_names"
+- name: git task
+  import_tasks: tasks/git_lab.yml
 
 - name: compose up
   docker_compose:

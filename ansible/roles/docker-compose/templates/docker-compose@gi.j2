@@ -4,13 +4,15 @@ git-lab:
     hostname: 'localhost'
     environment:
       GITLAB_OMNIBUS_CONFIG: |
-        external_url 'http://192.168.0.80'
-        gitlab_rails['lfs_enabled'] = true
+        external_url 'https://{{ git_url }}'
+        nginx['redirect_http_to_https'] = true
+        nginx['redirect_http_to_https_port'] = 80
+        gitlab_rails['gitlab_shell_ssh_port'] = 8022
     ports:
       - '443:443'
       - '2022:22'
       - '80:80' 
     volumes:
-      - '/disk/docker/git_data/etc:/etc/gitlab'
-      - '/disk/docker/git_data/logs:/var/log/gitlab'
-      - '/disk/docker/git_data/data:/var/opt/gitlab'
+      - '/data/git_data/etc:/etc/gitlab'
+      - '/data/git_data/logs:/var/log/gitlab'
+      - '/data/git_data/data:/var/opt/gitlab'

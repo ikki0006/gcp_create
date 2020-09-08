@@ -36,7 +36,3 @@
     fstype: ext4
     opts: defaults
     state: mounted
-    
-- name: reboot
-  shell: shutdown -r now
-  when: reboot == true

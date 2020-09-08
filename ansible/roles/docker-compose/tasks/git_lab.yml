@@ -1,0 +1,28 @@
+---
+- name: setting compose giserver
+  template: 
+    src: docker-compose@gi.j2
+    dest: /opt/docker_compose/docker-compose.yml
+    backup: yes
+
+- name: create git disk space
+  file:
+    path: /data/git_data/etc/ssl
+    state: directory
+
+- name: Generate OpenSSL private key
+  openssl_privatekey:
+    path: "/data/git_data/etc/ssl/localhost.pem"
+
+- name: Generate OpenSSL CSR
+  openssl_csr:
+    path: "/data/git_data/etc/ssl/localhost.csr"
+    privatekey_path: "/data/git_data/etc/ssl/localhost.pem"
+    common_name: "{{ git_url }}"
+
+- name: Generate OpenSSL certificate
+  openssl_certificate:
+    path: "/data/git_data/etc/ssl/localhost.crt"
+    privatekey_path: "/data/git_data/etc/ssl/localhost.pem"
+    csr_path: "/data/git_data/etc/ssl/localhost.csr"
+    provider: selfsigned
