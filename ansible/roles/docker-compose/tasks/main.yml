@@ -1,10 +1,4 @@
 ---
-- name: pip install packageing
-  pip:
-    name:
-      - docker-compose
-      - docker
-
 - name: setting sysctl #docker-composeに割り当てるメモリを増やす処理
   sysctl:
     name: vm.max_map_count
@@ -20,17 +14,3 @@
 
 - name: git task
   import_tasks: tasks/git_lab.yml
-
-- name: compose up
-  docker_compose:
-    project_src: /opt/docker_compose
-    files:
-      - docker-compose.yml
-    state: present
-
-- name: docker-compose status check
-  shell: docker-compose ps
-  args:
-    chdir: /opt/docker_compose
-  register: ps_result
-  failed_when: '"Exit" in ps_result.stdout'
