@@ -4,6 +4,7 @@
     name:
       - yum-utils
       - python-pip
+      - gcc
 
 - name: add docker-ce-nightly repo
   yum_repository:
