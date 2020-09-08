@@ -1,6 +1,6 @@
 ---
 - name: file system disk format
-  file_system:
+  filesystem:
     fstype: ext4
     dev: /dev/sdb
 
